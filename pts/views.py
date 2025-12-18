@@ -108,7 +108,7 @@ def transaction_create(request):
                 messages.success(request, 'Transaction recorded successfully.')
                 return redirect('dashboard')
             except ValidationError as e:
-                messages.error(request, str(e))
+                messages.error(request, str("Insufficient stock!", e))
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
