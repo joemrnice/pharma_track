@@ -39,8 +39,8 @@ This project was developed as part of a college assignment for the Faculty of In
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/pharmaceutical-tracking-system.git
-   cd pharmaceutical-tracking-system
+   git clone https://github.com/joemrnice/pharma_track.git
+   cd pharma_track
    ```
 
 2. **Create and activate a virtual environment**:
@@ -102,7 +102,7 @@ For production, configure a proper web server (e.g., Gunicorn + Nginx), set `DEB
 ## Project Structure
 
 ```
-pharmaceutical-tracking-system/
+pharma-track/
 ├── pharma_track/          # Main project directory
 │   ├── settings.py
 │   ├── urls.py
