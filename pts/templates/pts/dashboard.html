@@ -1,0 +1,103 @@
+{% extends 'pts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Dashboard</h1>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-white">
+                    <h5>Low Stock Items (Quantity < 10)</h5>
+                </div>
+                <div class="card-body">
+                    {% if low_stock %}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Drug</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stock in low_stock %}
+                                    <tr>
+                                        <td>{{ stock.drug.name }}</td>
+                                        <td>{{ stock.quantity }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-success">No low stock items.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h5>Expired Drugs</h5>
+                </div>
+                <div class="card-body">
+                    {% if expired_drugs %}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Drug</th>
+                                    <th>Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for drug in expired_drugs %}
+                                    <tr>
+                                        <td>{{ drug.name }}</td>
+                                        <td>{{ drug.expiry_date }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-success">No expired drugs.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5>Recent Transactions</h5>
+                </div>
+                <div class="card-body">
+                    {% if transactions %}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Drug</th>
+                                    <th>Quantity</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for trans in transactions %}
+                                    <tr>
+                                        <td>{{ trans.type.upper }}</td>
+                                        <td>{{ trans.drug.name }}</td>
+                                        <td>{{ trans.quantity }}</td>
+                                        <td>{{ trans.date|date:"Y-m-d H:i" }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No recent transactions.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
